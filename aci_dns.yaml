@@ -1,0 +1,26 @@
+apiVersion: 2019-12-01
+location: northeurope
+name: myContainerGroup
+properties:
+  containers:
+  - name: aci-tutorial-app
+    properties:
+      image: mcr.microsoft.com/azuredocs/aci-helloworld:latest
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.5
+      ports:
+      - port: 80
+  networkProfile:
+    id: "/subscriptions/6e8fd20c-17b0-4457-bea7-d20b50f95c95/resourceGroups/VPN/providers/Microsoft.Network/networkProfiles/aci-network-profile-VnetNorthEurope-aci"
+  dnsConfig:
+    nameServers: [ "8.8.8.8" ]
+  osType: Linux
+  ipAddress:
+    type: Private
+    ports:
+    - protocol: tcp
+      port: 80
+tags: null
+type: Microsoft.ContainerInstance/containerGroups
